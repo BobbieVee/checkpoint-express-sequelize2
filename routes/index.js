@@ -19,11 +19,13 @@ router.get('/articles', (req, res, next)=> {
 router.get('/articles/:id', (req, res, next)=>{
 	Article.findById(req.params.id*1)
 	.then((article)=> {
-		res.json(article);
+		if (article){
+			res.json(article);
+		} else {
+			res.sendStatus(404);
+		}
 	})
-	.catch((err)=>{
-		res.status(404).send(err)	
-	});
+	.catch(next);
 });
 
 router.post('/articles',(req, res, next)=>{
