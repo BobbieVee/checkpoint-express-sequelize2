@@ -10,6 +10,14 @@ var User = require('./user');
 //---------VVVV---------  your code below  ---------VVV----------
 
 var Article = db.define('article', {
+	title: {
+		type: Sequelize.STRING,
+		validate: {notEmpty: true}
+	},
+	content: {
+		type: Sequelize.TEXT, 
+		allowNull: false
+	}
 
 
 });
