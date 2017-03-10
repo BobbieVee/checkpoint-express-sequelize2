@@ -211,7 +211,7 @@ describe('The `Article` model', function () {
         return Promise.all(articles);
       });
 
-      xit('finds one specific article by its `title`', function () {
+      it('finds one specific article by its `title`', function () {
 
         return Article.findByTitle('Migratory Birds')
         .then(function (foundArticle) {
@@ -234,7 +234,7 @@ describe('The `Article` model', function () {
      * http://docs.sequelizejs.com/en/v3/docs/associations/#belongsto
      */
 
-    xit("belongs to a user, who is stored as the article's `author`", function() {
+    it("belongs to a user, who is stored as the article's `author`", function() {
 
       var creatingUser = User.create({ name: 'Alatar the Blue'});
       var creatingArticle = Article.create({
@@ -278,7 +278,7 @@ describe('The `Article` model', function () {
       });
     });
 
-    xit('is originally 0, even if not explicitly set', function() {
+    it('is originally 0, even if not explicitly set', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
@@ -287,7 +287,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('increments by 1 every time the article is updated', function() {
+    it('increments by 1 every time the article is updated', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
@@ -321,7 +321,7 @@ describe('The `Article` model', function () {
      *
      * To activate this spec, change `xit` to `it`
      */
-    xit('is a custom getter', function () {
+    it('is a custom getter', function () {
 
       // tags should have a `defaultValue` that is an empty array.
       expect(Article.attributes.tags.defaultValue).to.deep.equal([]);
