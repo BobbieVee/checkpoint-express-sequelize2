@@ -1,17 +1,56 @@
 var express = require('express');
 var router = express.Router();
 
+var db = require('../models/database');
+var Article = require('../models/article');
+var User = require('../models/user');
+
 var Article = require('../models/article');
 
-/**
- *
- *___ _____ _   ___ _____   _  _ ___ ___ ___
- / __|_   _/_\ | _ \_   _| | || | __| _ \ __|
- \__ \ | |/ _ \|   / | |   | __ | _||   / _|
- |___/ |_/_/ \_\_|_\ |_|   |_||_|___|_|_\___|
- *
- *
- */
+router.get('/articles', (req, res, next)=> {
+	Article.findAll()
+	.then((articles)=> {
+
+		res.json(articles);
+	})
+	.catch(next);
+});
+
+router.get('/articles/:id', (req, res, next)=>{
+	Article.findById(req.params.id*1)
+	.then((article)=> {
+		res.json(article);
+	})
+	.catch((err)=>{
+		res.status(404).send(err)	
+	});
+});
+
+router.post('/articles',(req, res, next)=>{
+	Article.create({title: req.body.title, content: req.body.content})
+	.then((article)=>{
+		res.send({
+			message: 'Created successfully',
+			article: article
+		});
+	})
+	.catch(next);
+});
+
+router.put('/articles/:id', (req, res, next)=> {
+	Article.update({title: req.body.title}, 
+		{where: {id: req.params.id}})
+	.then(()=>{
+		return Article.findById(req.params.id)
+	})
+	.then((article)=>{
+		res.send({
+			message: 'Updated successfully',
+			article: article
+		});
+	}) 	
+	.catch(next);
+});
 
 
 module.exports = router;
