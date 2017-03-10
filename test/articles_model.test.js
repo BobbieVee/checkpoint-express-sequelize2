@@ -123,7 +123,7 @@ describe('The `Article` model', function () {
        *
        * http://docs.sequelizejs.com/en/v3/docs/models-definition/#defining-as-part-of-the-model-options
        */
-      xit('evaluates to the first 23 characters of the `content` appended with "..."', function () {
+      it('evaluates to the first 23 characters of the `content` appended with "..."', function () {
 
         expect(article.snippet).to.equal('The South African cliff...');
 
@@ -136,7 +136,7 @@ describe('The `Article` model', function () {
       });
 
       // This is mostly to avoid a corner case seen during `Model.update`.
-      xit('returns empty string for missing `content`', function(){
+      it('returns empty string for missing `content`', function(){
 
         article.content = undefined;
 
@@ -156,7 +156,7 @@ describe('The `Article` model', function () {
        *
        * http://docs.sequelizejs.com/en/v3/docs/models-definition/#expansion-of-models
        */
-      xit('truncates the `content`', function () {
+      it('truncates the `content`', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -165,7 +165,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('accepts any length', function () {
+      it('accepts any length', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -175,7 +175,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('does not save the instance once truncated', function() {
+      it('does not save the instance once truncated', function() {
 
         expect(article.content).to.equal(fullText);
 

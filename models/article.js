@@ -20,6 +20,18 @@ var Article = db.define('article', {
 	}
 
 
+}, {
+	getterMethods: {
+		snippet: function(){
+			return (this.content)?this.content.slice(0,23) + '...':'';
+		}
+	},
+	instanceMethods: {
+		truncate: function(length){
+			this.content = (this.content.slice(0,length));
+
+		}
+	}
 });
 
 //---------^^^---------  your code above  ---------^^^----------
